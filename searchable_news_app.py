@@ -1,5 +1,8 @@
 
 import requests
+from configparser import ConfigParser
+
+
 
 print()
 print("Welcome to the News App!")
@@ -11,7 +14,7 @@ while True:
     if search_news.lower() == 'exit':
         exit(0)
 
-    url = f"https://newsapi.org/v2/everything?q={search_news}&apiKey=f8bc21d568ba450e94b0a6bb37d82c68"
+    url = f"https://newsapi.org/v2/everything?q={search_news}&apiKey="#Enter your API Key"
 
 
     result = requests.get(url).json()
