@@ -4,6 +4,7 @@ package com.newsapp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -14,31 +15,28 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class App extends Application{
 
     private static String apiUrl = "https://newsapi.org/v2/everything";
-    private static String apiKey = // Enter API KEY
+    private static String apiKey = "f8bc21d568ba450e94b0a6bb37d82c68";
 
     private TextArea newsTextArea;
 
     public static void main(String[] args) {
-
         launch(args);
     }
 
     public void start(Stage primaryStage) {
         primaryStage.setTitle("News App");
 
-        TextField searchField = new TextField();
-        searchField.setPromptText("Enter search keyword");
+        TextArea searchField = new TextArea();
+        searchField.setPromptText("Enter a keyword");
 
         Button searchButton = new Button("Search");
-        searchButton.setOnAction(e -> searchNews(searchField.getText()));
+        searchButton.setOnAction(e -> newsSearch(searchField.getText()));
 
         Button quitButton = new Button("Quit");
         quitButton.setOnAction(e -> primaryStage.close());
@@ -48,25 +46,20 @@ public class App extends Application {
 
         VBox layout = new VBox(10);
         layout.getChildren().addAll(searchField, searchButton, quitButton, newsTextArea);
-        
 
         Scene scene = new Scene(layout, 400, 300);
-    
-
         primaryStage.setScene(scene);
-
         primaryStage.show();
+    }
+
+    private static void getRoot(String root) {
 
     }
 
-    public static void setRoot(String root) {
 
-    }
-
-    private void searchNews (String userInput) {
+    public void newsSearch(String userInput) {
         if (userInput.isEmpty()) {
-            displayMessage ("Search field cannot be empty");
-            return;
+            displayMessage("Input field cannot be blank");
             
         }
 
@@ -82,9 +75,9 @@ public class App extends Application {
 
                 String line;
 
-                StringBuilder response = new StringBuilder();
+                StringBuffer response = new StringBuffer();
 
-                while ((line = reader.readLine()) !=null) {
+                while ((line = reader.readLine())!=null) {
                     response.append(line);
                     
                 }
@@ -94,48 +87,44 @@ public class App extends Application {
                 reader.close();
                 
             } else {
-                displayMessage("ERROR: Cannot connect to API. Code: " + connection.getReadTimeout());
-
+                displayMessage("ERROR: Cannot connect to API. CODE: " + connection.getResponseCode());
             }
 
-        connection.disconnect();
+            connection.disconnect();
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private String buildApiUrl(String userInput) {
+    public static String buildApiUrl(String userInput) {
         return String.format(apiUrl + "?q=" + userInput + "&apiKey=" + apiKey);
     }
 
     private void parseNewsData(String getData) {
+        
         JSONObject json = new JSONObject(getData);
+        
 
-        if (!json.has("articles") || json.getJSONArray("articles").isEmpty()) {
-            displayMessage("No articles found");
-            return;
-            
-        }
+        JSONArray articlesArr = json.getJSONArray("articles");
 
-        JSONArray articleArr = json.getJSONArray("articles");
         StringBuilder newsInfo = new StringBuilder();
 
-        JSONObject zero = articleArr.getJSONObject(0);
-        String author = zero.getString("author");
+        JSONObject zero = articlesArr.getJSONObject(0);
+
         String title = zero.getString("title");
+        String author = zero.getString("author");
         String description = zero.getString("description");
 
-        newsInfo.append("\nAuthor").append(author)
-                .append("\ntitle").append(title)
+        newsInfo.append("\nTitle ").append(title)
+                .append("\nAuthor ").append(author)
                 .append("\n").append(description).append("\n\n");
         
         displayMessage(newsInfo.toString());
-
-
     }
 
-    private void displayMessage(String message) {
+    public void displayMessage(String message) {
         newsTextArea.setText(message);
     }
 
