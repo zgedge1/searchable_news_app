@@ -31,7 +31,11 @@ pipeline {
         }
 
         stage('Deploy') {
-            // No specific steps for deployment yet
+            steps {
+                script {
+                    // Empty script block
+                }
+            }
         }
     }
 
