@@ -41,13 +41,17 @@ pipeline {
 
     post {
         success {
-            echo 'Build successful - Triggering deployment'
-            // You can add additional steps here for deployment
+            script {
+                echo 'Build successful - Triggering deployment'
+                // You can add additional steps here for deployment
+            }
         }
 
         failure {
-            echo 'Build failed - Notify team or take corrective actions'
-            // You can add additional steps here for notifications or corrective actions
+            script {
+                echo 'Build failed - Notify team or take corrective actions'
+                // You can add additional steps here for notifications or corrective actions
+            }
         }
     }
 }
