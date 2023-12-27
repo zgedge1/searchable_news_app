@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 public class App extends Application{
 
     private static String apiUrl = "https://newsapi.org/v2/everything";
-    private static String apiKey = "f8bc21d568ba450e94b0a6bb37d82c68";
+    private static String apiKey = // Enter API Key;
 
     private TextArea newsTextArea;
 
