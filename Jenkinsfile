@@ -1,31 +1,29 @@
 pipeline {
     agent any
 
-    environment {
-        JAVA_HOME = tool 'JDK8'
-    }
-
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
                     def mvnHome = tool 'Maven'
-                    sh "${mvnHome}/bin/mvn clean package"
+                    def javaHome = tool 'JDK11'
+
+                    env.PATH = "${javaHome}/bin:${mvnHome}/bin:${env.PATH}"
+
+                    sh "mvn clean package"
                 }
             }
         }
 
-        stage('Run Tests') {
+        stage('Test') {
             steps {
                 script {
                     def mvnHome = tool 'Maven'
-                    sh "${mvnHome}/bin/mvn test"
+                    def javaHome = tool 'JDK11'
+
+                    env.PATH = "${javaHome}/bin:${mvnHome}/bin:${env.PATH}"
+
+                    sh "mvn test"
                 }
             }
         }
@@ -33,7 +31,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Add your deployment steps here
+                    def mvnHome = tool 'Maven'
+                    def javaHome = tool 'JDK11'
+
+                    env.PATH = "${javaHome}/bin:${mvnHome}/bin:${env.PATH}"
+
+                    sh "java -jar target/newsapp12-hellonews.jar.jar"
                 }
             }
         }
@@ -41,13 +44,10 @@ pipeline {
 
     post {
         success {
-            echo 'Build successful - Triggering deployment'
-            // You can add additional steps here for deployment
+            echo 'Build succeeded! Deploying...'
         }
-
         failure {
-            echo 'Build failed - Notify team or take corrective actions'
-            // You can add additional steps here for notifications or corrective actions
+            echo 'Build failed! Not deploying...'
         }
     }
 }
