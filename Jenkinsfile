@@ -33,7 +33,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Empty script block
+                    // Add your deployment steps here
                 }
             }
         }
