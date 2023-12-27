@@ -14,13 +14,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                script {
+                    def mvnHome = tool 'Maven'
+                    sh "${mvnHome}/bin/mvn clean package"
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'mvn test'
+                script {
+                    def mvnHome = tool 'Maven'
+                    sh "${mvnHome}/bin/mvn test"
+                }
             }
         }
 
