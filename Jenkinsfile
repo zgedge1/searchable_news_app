@@ -31,7 +31,9 @@ pipeline {
         }
 
         stage('Deploy') {
-            // Assuming you have a deployment step, you can add it here
+            steps {
+                // No specific steps for deployment yet
+            }
         }
     }
 
