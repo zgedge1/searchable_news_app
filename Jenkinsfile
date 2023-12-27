@@ -32,7 +32,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // No specific steps for deployment yet
+                // Empty steps block since no specific steps are needed for deployment
             }
         }
     }
