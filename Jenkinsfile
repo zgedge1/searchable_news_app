@@ -14,27 +14,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                script {
-                    def mvnHome = tool 'Maven'
-                    sh "${mvnHome}/bin/mvn clean package"
-                }
+                sh 'mvn clean package'
             }
         }
 
         stage('Run Tests') {
             steps {
-                script {
-                    def mvnHome = tool 'Maven'
-                    sh "${mvnHome}/bin/mvn test"
-                }
+                sh 'mvn test'
             }
         }
 
         stage('Deploy') {
             steps {
-                script {
-                    // Assuming you have a deployment step, you can add it here
-                }
+                // Assuming you have a deployment step, you can add it here
             }
         }
     }
