@@ -88,13 +88,13 @@ public class newsAppGui extends Application{
 
         authorField1 = new Label("Author1");
         authorField1.setTranslateX(60);
-        authorField1.setTranslateY(180);
+        authorField1.setTranslateY(240);
         authorField1.setFont(resultFont);
 
 
         authorField2 = new Label("Author2");
         authorField2.setTranslateX(60);
-        authorField2.setTranslateY(300);
+        authorField2.setTranslateY(400);
         authorField2.setFont(resultFont);
 
 
@@ -103,26 +103,26 @@ public class newsAppGui extends Application{
         titleField0.setTranslateY(6);
         titleField0.setFont(resultFont);
         titleField0.setWrapText(true);
-        titleField0.setPrefWidth(300);
+        titleField0.setPrefWidth(150);
 
 
         titleField1 = new Label("Title1");
         titleField1.setTranslateX(400);
         titleField1.setTranslateY(120);
         titleField1.setFont(resultFont);
-        titleLabel.setWrapText(true);
-        titleLabel.setPrefWidth(300);
+        titleField1.setWrapText(true);
+        titleField1.setPrefWidth(150);
 
         titleField2 = new Label("Title2");
         titleField2.setTranslateX(400);
         titleField2.setTranslateY(235);
         titleField2.setFont(resultFont);
         titleField2.setWrapText(true);
-        titleField2.setPrefWidth(300);
+        titleField2.setPrefWidth(150);
 
         descriptionField0 = new Label("Description0");
         descriptionField0.setTranslateX(720);
-        descriptionField0.setTranslateY(-60);
+        descriptionField0.setTranslateY(-260);
         descriptionField0.setFont(resultFont);
         descriptionField0.setWrapText(true);
         descriptionField0.setPrefWidth(350);
@@ -131,7 +131,7 @@ public class newsAppGui extends Application{
 
         descriptionField1 = new Label("Description1");
         descriptionField1.setTranslateX(720);
-        descriptionField1.setTranslateY(50);
+        descriptionField1.setTranslateY(-160);
         descriptionField1.setFont(resultFont);
         descriptionField1.setWrapText(true);
         descriptionField1.setPrefWidth(350);
@@ -139,7 +139,7 @@ public class newsAppGui extends Application{
 
         descriptionField2 = new Label("Description2");
         descriptionField2.setTranslateX(720);
-        descriptionField2.setTranslateY(170);
+        descriptionField2.setTranslateY(-90);
         descriptionField2.setFont(resultFont);
         descriptionField2.setWrapText(true);
         descriptionField2.setPrefWidth(350);
@@ -155,7 +155,7 @@ public class newsAppGui extends Application{
         authorField2, titleField0, titleField1, titleField2, descriptionField0, descriptionField1, descriptionField2 );
         layout.setMaxHeight(200);
 
-        Scene scene = new Scene(layout, 1000, 600);
+        Scene scene = new Scene(layout, 1300, 800);
         primaryStage.setScene(scene);
         primaryStage.show();
 
