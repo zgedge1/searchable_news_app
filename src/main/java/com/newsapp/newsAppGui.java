@@ -102,33 +102,48 @@ public class newsAppGui extends Application{
         titleField0.setTranslateX(400);
         titleField0.setTranslateY(6);
         titleField0.setFont(resultFont);
+        titleField0.setWrapText(true);
+        titleField0.setPrefWidth(300);
 
 
         titleField1 = new Label("Title1");
         titleField1.setTranslateX(400);
         titleField1.setTranslateY(120);
         titleField1.setFont(resultFont);
+        titleLabel.setWrapText(true);
+        titleLabel.setPrefWidth(300);
 
         titleField2 = new Label("Title2");
         titleField2.setTranslateX(400);
         titleField2.setTranslateY(235);
         titleField2.setFont(resultFont);
+        titleField2.setWrapText(true);
+        titleField2.setPrefWidth(300);
 
         descriptionField0 = new Label("Description0");
         descriptionField0.setTranslateX(720);
         descriptionField0.setTranslateY(-60);
         descriptionField0.setFont(resultFont);
+        descriptionField0.setWrapText(true);
+        descriptionField0.setPrefWidth(350);
+
 
 
         descriptionField1 = new Label("Description1");
         descriptionField1.setTranslateX(720);
         descriptionField1.setTranslateY(50);
         descriptionField1.setFont(resultFont);
+        descriptionField1.setWrapText(true);
+        descriptionField1.setPrefWidth(350);
+
 
         descriptionField2 = new Label("Description2");
         descriptionField2.setTranslateX(720);
         descriptionField2.setTranslateY(170);
         descriptionField2.setFont(resultFont);
+        descriptionField2.setWrapText(true);
+        descriptionField2.setPrefWidth(350);
+
 
 
     
@@ -194,35 +209,47 @@ public class newsAppGui extends Application{
 
         JSONArray articleArr = json.getJSONArray("articles");
 
-        for (int i = 0; i < Math.min(articleArr.length(), 3); i++) {
 
-            JSONObject article = articleArr.getJSONObject(i);
-            
-            String title = article.getString("title");
-            String author = article.getString("author");
-            String description = article.getString("description");
-            
-            StringBuffer jsonNewsInfo = new StringBuffer();
 
-            jsonNewsInfo.append("/nTitle: ").append(title)
-                        .append("\nAuthor: ").append(author)
-                        .append("\n").append(description).append("\n\n");
-        }
+        JSONObject zero = articleArr.getJSONObject(0);
+        JSONObject one = articleArr.getJSONObject(1);
+        JSONObject two = articleArr.getJSONObject(2);
+
+
+
+        
+        String title0 = zero.getString("title");
+        String author0 = zero.getString("author");
+        String description0 = zero.getString("description");
+
+        String title1 = one.getString("title");
+        String author1 = one.getString("author");
+        String description1 = one.getString("description");
+        
+        String title2 = two.getString("title");
+        String author2 = two.getString("author");
+        String description2 = two.getString("description");
+
+
+        
+        authorField0.setText(author0);
+        authorField1.setText(author1);
+        authorField2.setText(author2);
+
+        titleField0.setText(title0);
+        titleField1.setText(title1);
+        titleField2.setText(title2);
+
+        descriptionField0.setText(description0);
+        descriptionField1.setText(description1);
+        descriptionField2.setText(description2);
+
+
             
         }
 
         private void displayMessage(String message) {
-            titleField0.setText(message);
-            titleField1.setText(message);
-            titleField2.setText(message);
-
-            authorField0.setText(message);
-            authorField1.setText(message);
-            authorField2.setText(message);
-
-            descriptionField0.setText(message);
-            descriptionField1.setText(message);
-            descriptionField2.setText(message);
+            
 
         }
 
