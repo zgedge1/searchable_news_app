@@ -10,13 +10,9 @@ pipeline {
                     def mvnHome = tool 'Maven'
                     def javaHome = tool 'JDK11'
 
-                    dir('/home/zach/Documents/Java_Code/newsapp12') {
+                    env.PATH = "${javaHome}/bin:${mvnHome}/bin:${env.PATH}"
 
-                        sh "mvn clean package"
-
-
-                    }
-
+                    sh "mvn clean package"
                 }
             }
         }
