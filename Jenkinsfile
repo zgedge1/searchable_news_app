@@ -12,7 +12,11 @@ pipeline {
 
                     env.PATH = "${javaHome}/bin:${mvnHome}/bin:${env.PATH}"
 
-                    sh "mvn clean package"
+                    dir('home/zach/Documents/Java_Code/newsapp12') {
+                        sh "mvn clean package"
+
+                    }
+
                 }
             }
         }
